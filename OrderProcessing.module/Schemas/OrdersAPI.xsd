@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="/api/T1743783650328Converted/JsonSchema" xmlns:tns="/api/T1743783650328Converted/JsonSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="OrderCreationResponse_orderId" type="tns:OrderCreationResponse_orderId"/>
+    <xs:simpleType name="OrderCreationResponse_orderId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="OrderRequest_customerId" type="tns:OrderRequest_customerId"/>
+    <xs:simpleType name="OrderRequest_customerId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="ErrorResponse" type="tns:ErrorResponse"/>
+    <xs:complexType name="ErrorResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="code" type="xs:integer"/>
+            <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ErrorResponse_code" type="tns:ErrorResponse_code"/>
+    <xs:simpleType name="ErrorResponse_code">
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+    <xs:element name="Product" type="tns:Product"/>
+    <xs:complexType name="Product">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="name" type="xs:string"/>
+            <xs:element minOccurs="0" name="quantity">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ErrorResponse_message" type="tns:ErrorResponse_message"/>
+    <xs:simpleType name="ErrorResponse_message">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="OrderStatusUpdateRequest_status" type="tns:OrderStatusUpdateRequest_status"/>
+    <xs:simpleType name="OrderStatusUpdateRequest_status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Processing"/>
+            <xs:enumeration value="Shipped"/>
+            <xs:enumeration value="Cancelled"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="OrderArray" type="tns:OrderArray"/>
+    <xs:complexType name="OrderArray">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Order" type="tns:Order"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Order" type="tns:Order"/>
+    <xs:complexType name="Order">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:string"/>
+            <xs:element minOccurs="0" name="customerId" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderDate" type="xs:dateTime"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="products" type="tns:Product"/>
+            <xs:element minOccurs="0" name="status">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Pending"/>
+                        <xs:enumeration value="Processing"/>
+                        <xs:enumeration value="Shipped"/>
+                        <xs:enumeration value="Cancelled"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Order_customerId" type="tns:Order_customerId"/>
+    <xs:simpleType name="Order_customerId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="Product_quantity" type="tns:Product_quantity"/>
+    <xs:simpleType name="Product_quantity">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+           <!-- <xs:maxInclusive value="null"/>-->
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="OrderCreationResponse" type="tns:OrderCreationResponse"/>
+    <xs:complexType name="OrderCreationResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="orderId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderStatusUpdateRequest" type="tns:OrderStatusUpdateRequest"/>
+    <xs:complexType name="OrderStatusUpdateRequest">
+        <xs:sequence>
+            <xs:element name="status">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Processing"/>
+                        <xs:enumeration value="Shipped"/>
+                        <xs:enumeration value="Cancelled"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderRequest" type="tns:OrderRequest"/>
+    <xs:complexType name="OrderRequest">
+        <xs:sequence>
+            <xs:element name="customerId" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" name="products" type="tns:Product"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Product_name" type="tns:Product_name"/>
+    <xs:simpleType name="Product_name">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="OrderRequest_products" type="tns:OrderRequest_products"/>
+    <xs:complexType name="OrderRequest_products">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="OrderRequest_products" type="tns:Product"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Order_products" type="tns:Order_products"/>
+    <xs:complexType name="Order_products">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Order_products" type="tns:Product"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Order_orderId" type="tns:Order_orderId"/>
+    <xs:simpleType name="Order_orderId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="Order_orderDate" type="tns:Order_orderDate"/>
+    <xs:simpleType name="Order_orderDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="Order_status" type="tns:Order_status"/>
+    <xs:simpleType name="Order_status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pending"/>
+            <xs:enumeration value="Processing"/>
+            <xs:enumeration value="Shipped"/>
+            <xs:enumeration value="Cancelled"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
