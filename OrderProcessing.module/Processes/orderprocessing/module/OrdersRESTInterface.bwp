@@ -19,6 +19,7 @@
         <task name="postOut">
             <endingVariables>
                 <variable>postOut-input</variable>
+                <variable>CreateOrder</variable>
             </endingVariables>
         </task>
         <task name="CreateOrder">
@@ -1710,6 +1711,8 @@
             namespace="http://www.example.com/namespaces/tns/1744208063291" prefix="tns2"/>
         <tibex:namespaceItem
             namespace="http://www.tibco.com/bw/xpath/bw-custom-functions" prefix="bw"/>
+        <tibex:namespaceItem
+            namespace="/api/T1743783650328Converted/JsonSchema" prefix="tns3"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/REST"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="/api/T1743783650328Converted/JsonSchema"/>
@@ -1742,6 +1745,7 @@
         <bpws:variable element="ns3:Element" name="Logger-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns4:OrderRequest"
             name="CreateOrder-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns4:Order_orderId" name="CreateOrder" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -1773,32 +1777,21 @@
                                 tibex:xpdlId="8be5838b-67d9-457b-93c7-c421745d6a21" variable="postOut-input">
                                 <tibex:inputBindings>
                                     <tibex:partBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://xmlns.example.com/20250404153415PLT&quot; xmlns:tns3=&quot;/api/T1743783650328Converted/JsonSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;postOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns3:OrderCreationResponse>&#xa;            &lt;tns3:orderId>&#xa;                &lt;xsl:value-of select=&quot;&amp;quot;1234&amp;quot;&quot;/>&#xa;            &lt;/tns3:orderId>&#xa;        &lt;/tns3:OrderCreationResponse>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://xmlns.example.com/20250404153415PLT&quot; xmlns:tns3=&quot;/api/T1743783650328Converted/JsonSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;CreateOrder&quot;/>&#xa;    &lt;xsl:template name=&quot;postOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns3:OrderCreationResponse>&#xa;            &lt;tns3:orderId>&#xa;                &lt;xsl:value-of select=&quot;$CreateOrder&quot;/>&#xa;            &lt;/tns3:orderId>&#xa;        &lt;/tns3:OrderCreationResponse>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                 </tibex:inputBindings>
                                 <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns1="http://xmlns.example.com/20250404153415PLT" xmlns:tns3="/api/T1743783650328Converted/JsonSchema" version="2.0"&gt;
-    &lt;xsl:template name="postOut-input" match="/"&gt;
-        &lt;tns1:postResponse&gt;
-            &lt;item&gt;
-                &lt;tns3:OrderCreationResponse&gt;
-                    &lt;tns3:orderId&gt;
-                        &lt;xsl:value-of select="&amp;quot;1234&amp;quot;"/&gt;
-                    &lt;/tns3:orderId&gt;
-                &lt;/tns3:OrderCreationResponse&gt;
-            &lt;/item&gt;
-        &lt;/tns1:postResponse&gt;
-    &lt;/xsl:template&gt;
-&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns1="http://xmlns.example.com/20250404153415PLT" xmlns:tns3="/api/T1743783650328Converted/JsonSchema" version="2.0"&gt;&lt;xsl:param name="CreateOrder"/&gt;&lt;xsl:template name="postOut-input" match="/"&gt;&lt;tns1:postResponse&gt;&lt;item&gt;&lt;tns3:OrderCreationResponse&gt;&lt;tns3:orderId&gt;&lt;xsl:value-of select="$CreateOrder"/&gt;&lt;/tns3:orderId&gt;&lt;/tns3:OrderCreationResponse&gt;&lt;/item&gt;&lt;/tns1:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                                 <bpws:targets>
                                     <bpws:target linkName="ReceiveOrderTopostOut"/>
                                 </bpws:targets>
                             </bpws:reply>
                             <bpws:extensionActivity>
                                 <tibex:extActivity
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;/api/T1743783650328Converted/JsonSchema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;CreateOrder-input&quot; match=&quot;/&quot;>&lt;tns:OrderRequest>&lt;tns:customerId>&lt;xsl:value-of select=&quot;$post/item/tns:OrderRequest/tns:customerId&quot;/>&lt;/tns:customerId>&lt;xsl:copy-of select=&quot;$post/item/tns:OrderRequest/tns:products&quot;/>&lt;/tns:OrderRequest>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns3=&quot;/api/T1743783650328Converted/JsonSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post&quot;/>&#xa;    &lt;xsl:template name=&quot;CreateOrder-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns3:OrderRequest>&#xa;            &lt;tns3:customerId>&#xa;                &lt;xsl:value-of select=&quot;$post/item/tns3:OrderRequest/tns3:customerId&quot;/>&#xa;            &lt;/tns3:customerId>&#xa;            &lt;xsl:copy-of select=&quot;$post/item/tns3:OrderRequest/tns3:products&quot;/>&#xa;        &lt;/tns3:OrderRequest>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>"
                                     expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
                                     inputVariable="CreateOrder-input"
                                     name="CreateOrder"
+                                    outputVariable="CreateOrder"
                                     tibex:xpdlId="39a9bd21-3328-4c17-97b0-a67df7dadf6a"
                                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:targets>
@@ -1809,7 +1802,7 @@
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding coercion=""
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;/api/T1743783650328Converted/JsonSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.item&quot;/>&#xa;    &lt;xsl:template name=&quot;CreateOrder-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns:OrderRequest>&#xa;            &lt;tns:customerId>&#xa;                &lt;xsl:value-of select=&quot;$post.item/tns:customerId&quot;/>&#xa;            &lt;/tns:customerId>&#xa;            &lt;xsl:copy-of select=&quot;$post.item/tns:products&quot;/>&#xa;        &lt;/tns:OrderRequest>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns3=&quot;/api/T1743783650328Converted/JsonSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.item&quot;/>&#xa;    &lt;xsl:template name=&quot;CreateOrder-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns3:OrderRequest>&#xa;            &lt;tns3:customerId>&#xa;                &lt;xsl:value-of select=&quot;$post.item/tns3:customerId&quot;/>&#xa;            &lt;/tns3:customerId>&#xa;            &lt;xsl:copy-of select=&quot;$post.item/tns3:products&quot;/>&#xa;        &lt;/tns3:OrderRequest>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
                                     subProcessName="orderprocessing.module.CreateOrderProcess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
@@ -1817,6 +1810,8 @@
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
                                 <tibex:extActivity
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1744208063291&quot; xmlns:tns3=&quot;/api/T1743783650328Converted/JsonSchema&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;Logger-input&quot; match=&quot;/&quot;>&lt;tns2:Element>&lt;tns2:LogMessage>&lt;xsl:value-of select=&quot;concat(&amp;quot;Payload Received: &amp;quot;, tib:render-xml($post/item/tns3:OrderRequest))&quot;/>&lt;/tns2:LogMessage>&lt;tns2:Severity>&lt;xsl:value-of select=&quot;bw:getModuleProperty(&amp;quot;LogLevel&amp;quot;)&quot;/>&lt;/tns2:Severity>&lt;/tns2:Element>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                                    expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
                                     inputVariable="Logger-input"
                                     name="Logger"
                                     tibex:xpdlId="f6089f82-30cb-4bde-8610-fd3adeb0aa60"
@@ -1826,7 +1821,7 @@
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding coercion=""
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1744208063291&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;Logger-input&quot; match=&quot;/&quot;>&lt;tns2:Element>&lt;tns2:LogMessage>&lt;xsl:value-of select=&quot;concat(&amp;quot;Payload Received: &amp;quot;, string($post))&quot;/>&lt;/tns2:LogMessage>&lt;tns2:Severity>&lt;xsl:value-of select=&quot;bw:getModuleProperty(&amp;quot;LogLevel&amp;quot;)&quot;/>&lt;/tns2:Severity>&lt;/tns2:Element>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.example.com/namespaces/tns/1744208063291&quot; xmlns:tns3=&quot;/api/T1743783650328Converted/JsonSchema&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.item&quot;/>&#xa;    &lt;xsl:template name=&quot;Logger-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns2:Element>&#xa;            &lt;tns2:LogMessage>&#xa;                &lt;xsl:value-of select=&quot;concat(&amp;quot;Payload Received: &amp;quot;, tib:render-xml($post.item))&quot;/>&#xa;            &lt;/tns2:LogMessage>&#xa;            &lt;tns2:Severity>&#xa;                &lt;xsl:value-of select=&quot;bw:getModuleProperty(&amp;quot;LogLevel&amp;quot;)&quot;/>&#xa;            &lt;/tns2:Severity>&#xa;        &lt;/tns2:Element>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess spawn="true"
                                     subProcessName="orderprocessing.module.Logger" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
@@ -1904,18 +1899,18 @@
                                 tibex:xpdlId="c3e21d99-56c1-4e29-b2e5-742fca420b6c" variable="putOut-input">
                                 <tibex:inputBindings>
                                     <tibex:partBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://xmlns.example.com/20250404153415PLT&quot; xmlns:tns3=&quot;http://tns.tibco.com/bw/REST&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;putOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns3:statusLine>&#xa;            &lt;statusCode>&#xa;                &lt;xsl:value-of select=&quot;200&quot;/>&#xa;            &lt;/statusCode>&#xa;        &lt;/tns3:statusLine>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://xmlns.example.com/20250404153415PLT&quot; xmlns:tns4=&quot;http://tns.tibco.com/bw/REST&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;putOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns4:statusLine>&#xa;            &lt;statusCode>&#xa;                &lt;xsl:value-of select=&quot;200&quot;/>&#xa;            &lt;/statusCode>&#xa;        &lt;/tns4:statusLine>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                 </tibex:inputBindings>
                                 <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns1="http://xmlns.example.com/20250404153415PLT" xmlns:tns3="http://tns.tibco.com/bw/REST" version="2.0"&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns1="http://xmlns.example.com/20250404153415PLT" xmlns:tns4="http://tns.tibco.com/bw/REST" version="2.0"&gt;
     &lt;xsl:template name="putOut-input" match="/"&gt;
         &lt;tns1:putResponse&gt;
             &lt;status&gt;
-                &lt;tns3:statusLine&gt;
+                &lt;tns4:statusLine&gt;
                     &lt;statusCode&gt;
                         &lt;xsl:value-of select="200"/&gt;
                     &lt;/statusCode&gt;
-                &lt;/tns3:statusLine&gt;
+                &lt;/tns4:statusLine&gt;
             &lt;/status&gt;
         &lt;/tns1:putResponse&gt;
     &lt;/xsl:template&gt;

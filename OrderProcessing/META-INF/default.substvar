@@ -66,7 +66,36 @@
 		</globalVariable>
 		<globalVariable>
 			<name>//OrderProcessing.module//LogLevel</name>
+			<value>%%LogLevel%%</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>false</useLookupValue>
+			<lookupValue>%%LogLevel%%</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>//OrderProcessing.module//EMSURL</name>
+			<value>%%EMSURL%%</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>false</useLookupValue>
+			<lookupValue>%%EMSURL%%</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>LogLevel</name>
 			<value>&quot;INFO&quot;</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>EMSURL</name>
+			<value>tcp://localhost:7222</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
