@@ -55,8 +55,9 @@
   <sca:property xmi:id="_gL-kUBFZEfCyX9-kGgCMZg" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_gMBnoBFZEfCyX9-kGgCMZg" name="BW.CLOUD.PORT" type="XMLSchema:int" scalable="true"/>
   <sca:property xmi:id="_gMEq8BFZEfCyX9-kGgCMZg" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_CxL7IBVHEfCuSZrI6AA3vQ" name="LogLevel" type="XMLSchema:string" publicAccess="true" scalable="true"/>
   <sca:component xmi:id="_gICfgBFZEfCyX9-kGgCMZg" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_gICfgRFZEfCyX9-kGgCMZg" processName="orderprocessing.module.Process"/>
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_gICfgRFZEfCyX9-kGgCMZg" processName="orderprocessing.module.OrdersRESTInterface"/>
     <sca:service xmi:id="_ZKuxUBFoEfCYqO9K6KKv-A" name="orders">
       <sca:interface.wsdl xmi:id="_ZKuxURFoEfCYqO9K6KKv-A" interface="http://xmlns.example.com/20250404153415PLT#wsdl.interface(orders)"/>
     </sca:service>
