@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://xsd.tns.tibco.com/bw/models/sharedresource/jms" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_eW41kRV4EfCYb_MzXHlaSg" name="orderprocessing.module.EMSDefaultJNDIConfiguration" type="jms:JNDIConnection">
-  <jndi:configuration xsi:type="jms:JNDIConnectionConfiguration" xmi:id="_eW6DsBV4EfCYb_MzXHlaSg">
-    <substitutionBindings xmi:id="_UM21EBV5EfCpG_csTpS_wg" template="providerUrl" propName="EMSURL"/>
-  </jndi:configuration>
-</jndi:namedResource>

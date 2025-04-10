@@ -69,4 +69,7 @@
       <sca:interface.wsdl xmi:id="_dm3lcRFoEfCYqO9K6KKv-A" interface="http://xmlns.example.com/20250404153415PLT#wsdl.interface(orders-customer)" scaext:wsdlLocation="../Processes/orderprocessing/module/Process.bwp"/>
     </sca:service>
   </sca:component>
+  <sca:component xmi:id="_6SMCkBYXEfCO2oDVtrUafg" name="ComponentStockCheck" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_6SMCkRYXEfCO2oDVtrUafg" processName="orderprocessing.module.StockCheck"/>
+  </sca:component>
 </sca:composite>
