@@ -72,4 +72,10 @@
   <sca:component xmi:id="_6SMCkBYXEfCO2oDVtrUafg" name="ComponentStockCheck" compositeext:version="1.0.0.qualifier">
     <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_6SMCkRYXEfCO2oDVtrUafg" processName="orderprocessing.module.StockCheck"/>
   </sca:component>
+  <sca:component xmi:id="_61l14BasEfCXEMlsjM9ueQ" name="ComponentAuditLog" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_61l14RasEfCXEMlsjM9ueQ" processName="orderprocessing.module.AuditLog"/>
+  </sca:component>
+  <sca:component xmi:id="_H9agYBawEfCXEMlsjM9ueQ" name="ComponentActivator" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_H9agYRawEfCXEMlsjM9ueQ" processName="orderprocessing.module.Activator"/>
+  </sca:component>
 </sca:composite>

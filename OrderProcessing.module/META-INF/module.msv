@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <msv:DocumentRoot xmlns:msv="http://tns.tibco.com/bw/model/core/moduleSV">
-  <moduleSharedVariables/>
+  <moduleSharedVariables>
+    <moduleSharedVariable name="OrderStatus" type="{http://www.example.com/namespaces/tns/1744364448413}OrderStatus" initialValueMode="none"/>
+    <moduleSharedVariable name="Customers" type="{http://www.example.com/namespaces/tns/1744364448414}customers" initialValueMode="none" initialValue=""/>
+    <moduleSharedVariable name="Products" type="{/api/T1743783650328Converted/JsonSchema}OrderRequest_products" initialValueMode="none"/>
+  </moduleSharedVariables>
+  <import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.com/namespaces/tns/1744364448413" location="../Schemas/OrderStatus.xsd"/>
+  <import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.com/namespaces/tns/1744364448414" location="../Schemas/CustomersSchema.xsd"/>
+  <import importType="http://www.w3.org/2001/XMLSchema" namespace="/api/T1743783650328Converted/JsonSchema" location="../Schemas/OrdersAPI.xsd"/>
 </msv:DocumentRoot>

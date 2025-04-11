@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:tns="http://tibco.com/bw/bw6/system/ModuleActivator" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ModuleActivator" targetNamespace="http://tibco.com/bw/bw6/system/ModuleActivator">
+        
+    
+  <wsdl:types>
+    <xsd:schema elementFormDefault="unqualified" targetNamespace="http://tibco.com/bw/bw6/system/ModuleActivator">
+      <xsd:element name="operationRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="operationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+      
+  <wsdl:message name="onStartupRequest">
+	</wsdl:message>
+        
+  
+  <wsdl:message name="onShutdownRequest">
+    </wsdl:message>
+        
+    
+  <wsdl:message name="operationRequest">
+    <wsdl:part element="tns:operationRequest" name="parameters"/>
+  </wsdl:message>
+      
+  <wsdl:message name="operationResponse">
+    <wsdl:part element="tns:operationResponse" name="parameters"/>
+  </wsdl:message>
+      
+  <wsdl:portType name="ModuleActivator">
+            	
+    
+    <wsdl:operation name="onStartup">
+                		
+      
+      <wsdl:input message="tns:onStartupRequest"/>
+                	
+    
+    </wsdl:operation>
+            	
+    
+    <wsdl:operation name="onShutdown">
+                		
+      
+      <wsdl:input message="tns:onShutdownRequest"/>
+                	
+    
+    </wsdl:operation>
+            
+        
+    <wsdl:operation name="operation">
+      <wsdl:input message="tns:operationRequest" name="operationInput"/>
+      <wsdl:output message="tns:operationResponse" name="operationOutput"/>
+    </wsdl:operation>
+        
+  </wsdl:portType>
+    
+
+</wsdl:definitions>
