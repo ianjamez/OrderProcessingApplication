@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_yoZxwCEPEfC8Mu-jW-3Nxw" targetNamespace="http://tns.tibco.com/bw/composite/OrderProcessingSimulator.module" name="OrderProcessingSimulator.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:property xmi:id="_y2OyYCEPEfC8Mu-jW-3Nxw" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_y2U5ACEPEfC8Mu-jW-3Nxw" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_y2XVQCEPEfC8Mu-jW-3Nxw" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_y2a_oCEPEfC8Mu-jW-3Nxw" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_y2eC8CEPEfC8Mu-jW-3Nxw" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_y2gfMCEPEfC8Mu-jW-3Nxw" name="BW.CLOUD.PORT" type="XMLSchema:int" scalable="true"/>
+  <sca:property xmi:id="_y2i7cCEPEfC8Mu-jW-3Nxw" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:component xmi:id="_yuwRYCEPEfC8Mu-jW-3Nxw" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_yuwRYSEPEfC8Mu-jW-3Nxw" processName="orderprocessingsimulator.module.Process"/>
+  </sca:component>
+</sca:composite>
