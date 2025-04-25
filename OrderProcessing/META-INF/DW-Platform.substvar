@@ -2,6 +2,26 @@
 <repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
 	<globalVariables>
 		<globalVariable>
+			<name>LogLevel</name>
+			<value>#LogLevel#</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#LogLevel#</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>EMSURL</name>
+			<value>#EMSURL#</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#EMSURL#</lookupValue>
+		</globalVariable>
+		<globalVariable>
 			<name>//OrderProcessing.module//BW.APPNODE.NAME</name>
 			<value></value>
 			<deploymentSettable>false</deploymentSettable>
@@ -76,33 +96,13 @@
 		</globalVariable>
 		<globalVariable>
 			<name>//OrderProcessing.module//EMSURL</name>
-			<value>tcp://localhost:7222</value>
+			<value>tcp://ems-emsactive.dw-dp.svc:9011,tcp://ems-ems.dw-dp.svc:9011</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<isOverride>false</isOverride>
+			<isOverride>true</isOverride>
 			<useLookupValue>false</useLookupValue>
-			<lookupValue>tcp://localhost:7222</lookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>LogLevel</name>
-			<value>INFO</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>String</type>
-			<isOverride>true</isOverride>
-			<useLookupValue>true</useLookupValue>
-			<lookupValue>INFO</lookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>EMSURL</name>
-			<value>tcp://localhost:7222</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>String</type>
-			<isOverride>true</isOverride>
-			<useLookupValue>true</useLookupValue>
-			<lookupValue>tcp://localhost:7222</lookupValue>
+			<lookupValue>tcp://ems-emsactive.dw-dp.svc:9011,tcp://ems-ems.dw-dp.svc:9011</lookupValue>
 		</globalVariable>
 	</globalVariables>
 </repository>

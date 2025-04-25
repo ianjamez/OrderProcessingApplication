@@ -1429,8 +1429,7 @@
                         subProcessName="orderprocessing.module.Logger" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
-            <bpws:scope name="Iterate" tibex:group="iterate"
-                tibex:indexToGlobal="false" tibex:xpdlId="7b35f6b0-93fb-4046-94ba-684f6d0ae2c9">
+            <bpws:scope name="Iterate" tibex:group="iterate" tibex:xpdlId="7b35f6b0-93fb-4046-94ba-684f6d0ae2c9">
                 <bpws:targets>
                     <bpws:target linkName="AssignToIterate"/>
                 </bpws:targets>

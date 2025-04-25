@@ -11,6 +11,7 @@
     xmlns:ns2="http://xmlns.example.com/20250404153415PLT"
     xmlns:ns3="http://www.example.com/namespaces/tns/1744208063291"
     xmlns:ns4="/api/T1743783650328Converted/JsonSchema"
+    xmlns:ns5="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -1154,7 +1155,7 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.1/@activity/@activity"/>
 
                                     <layoutConstraint
-                                    height="98"
+                                    height="199"
                                     width="623" xsi:type="notation:Bounds"/>
                                     </children>
 
@@ -1176,10 +1177,9 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.1/@activity"/>
 
                                     <layoutConstraint
-                                    height="-45"
-                                    width="-76"
-                                    x="30"
-                                    xsi:type="notation:Bounds" y="20"/>
+                                    height="199"
+                                    width="626"
+                                    x="15" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -1192,7 +1192,9 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.1/@activity"/>
 
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    <layoutConstraint
+                                    height="234"
+                                    width="666" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -1255,8 +1257,10 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.1"/>
                                     <layoutConstraint
-                                    height="140"
-                                    width="485" xsi:type="notation:Bounds"/>
+                                    height="253"
+                                    width="728"
+                                    x="2"
+                                    xsi:type="notation:Bounds" y="169"/>
                                     </children>
                                     <children type="4011">
                                     <children type="3012">
@@ -1589,10 +1593,9 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.2/@activity"/>
 
                                     <layoutConstraint
-                                    height="-45"
-                                    width="-76"
-                                    x="30"
-                                    xsi:type="notation:Bounds" y="20"/>
+                                    height="103"
+                                    width="626"
+                                    x="15" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -1605,7 +1608,9 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.2/@activity"/>
 
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    <layoutConstraint
+                                    height="176"
+                                    width="666" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -1672,10 +1677,10 @@
                                     restoreY="285" xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.2"/>
                                     <layoutConstraint
-                                    height="141"
-                                    width="485"
+                                    height="195"
+                                    width="728"
                                     x="2"
-                                    xsi:type="notation:Bounds" y="285"/>
+                                    xsi:type="notation:Bounds" y="325"/>
                                     </children>
                                     <children type="4011">
                                     <children type="3012">
@@ -2047,7 +2052,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint
-                                    height="661" width="747" xsi:type="notation:Bounds"/>
+                                    height="813" width="747" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -2061,7 +2066,7 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity"/>
-                                    <layoutConstraint height="714"
+                                    <layoutConstraint height="988"
                                     width="757" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
@@ -2072,7 +2077,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity"/>
-                            <layoutConstraint height="639" width="760" xsi:type="notation:Bounds"/>
+                            <layoutConstraint height="988" width="760" xsi:type="notation:Bounds"/>
                         </children>
                         <styles xsi:type="notation:SortingStyle"/>
                         <styles xsi:type="notation:FilteringStyle"/>
@@ -2082,7 +2087,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="663" width="760" x="1"
+                    <layoutConstraint height="1012" width="760" x="1"
                         xsi:type="notation:Bounds" y="1"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
@@ -2091,7 +2096,7 @@
             </children>
             <styles fontName="Cantarell" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="790" width="1102" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="1064" width="1102" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>

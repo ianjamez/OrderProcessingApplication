@@ -20,6 +20,7 @@
         <task name="End">
             <endingVariables>
                 <variable>InsertOrderIntoDB</variable>
+                <variable>InventoryCheck</variable>
             </endingVariables>
         </task>
         <task name="Logger">
@@ -42,12 +43,16 @@
                 <variable>SendOrderDetails-input</variable>
                 <variable>SendOrderDetails</variable>
                 <variable>Start</variable>
-                <variable>InventoryCheck</variable>
             </endingVariables>
         </task>
         <task name="OrderCreatedLog">
             <endingVariables>
                 <variable>OrderCreatedLog-input</variable>
+            </endingVariables>
+        </task>
+        <task name="NoStockAvailable">
+            <endingVariables>
+                <variable>NoStockAvailable-input</variable>
             </endingVariables>
         </task>
     </tibex:VariableDescriptor>
@@ -784,8 +789,8 @@
                                     gradientEndColor="50431"
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.1"/>
-                                    <layoutConstraint x="721"
-                                    xsi:type="notation:Bounds" y="50"/>
+                                    <layoutConstraint x="873"
+                                    xsi:type="notation:Bounds" y="190"/>
                                     </children>
                                     <children type="4002">
                                     <children type="4017">
@@ -964,6 +969,80 @@
                                     <layoutConstraint x="623"
                                     xsi:type="notation:Bounds" y="50"/>
                                     </children>
+                                    <children type="4002 bw.generalactivities.callprocess">
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.7"/>
+                                    <layoutConstraint
+                                    height="40" width="40"
+                                    x="339"
+                                    xsi:type="notation:Bounds" y="190"/>
+                                    </children>
+                                    <children type="4002 com.tibco.bw.core.design.process.editor.Activity_4002_Empty">
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <children type="4017">
+                                    <styles
+                                    fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    </children>
+                                    <styles fontName="Segoe UI"
+                                    lineColor="0" xsi:type="notation:ShapeStyle"/>
+                                    <styles
+                                    backgroundColor="16777215"
+                                    gradientEndColor="50431"
+                                    gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
+                                    <element href="//0/@process/@activity/@activity/@activities.8"/>
+                                    <layoutConstraint
+                                    height="40" width="40"
+                                    x="710"
+                                    xsi:type="notation:Bounds" y="190"/>
+                                    </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -977,7 +1056,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity"/>
                                     <layoutConstraint height="384"
-                                    width="922" xsi:type="notation:Bounds"/>
+                                    width="1006" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
@@ -987,7 +1066,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity"/>
-                            <layoutConstraint height="384" width="620" xsi:type="notation:Bounds"/>
+                            <layoutConstraint height="384" width="1009" xsi:type="notation:Bounds"/>
                         </children>
                         <styles xsi:type="notation:SortingStyle"/>
                         <styles xsi:type="notation:FilteringStyle"/>
@@ -997,7 +1076,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="408" width="620" x="1"
+                    <layoutConstraint height="408" width="1009" x="1"
                         xsi:type="notation:Bounds" y="1"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
@@ -1006,7 +1085,7 @@
             </children>
             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="460" width="1267" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="460" width="1351" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
@@ -1069,7 +1148,7 @@
         </edges>
         <edges
             source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.6"
-            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1" type="4006">
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.8" type="4006">
             <children type="6002">
                 <layoutConstraint xsi:type="notation:Location" y="40"/>
             </children>
@@ -1077,6 +1156,40 @@
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@links/@children.5"/>
             <bendpoints points="[25, 0, -73, 0]$[74, 0, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
+            <targetAnchor id="(0.08163265306122448,0.6122448979591837)" xsi:type="notation:IdentityAnchor"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.4"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.7" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.6"/>
+            <bendpoints points="[1, 25, 0, -114]$[0, 115, -1, -24]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.7"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.8" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.7"/>
+            <bendpoints points="[25, -1, -347, 17]$[348, -17, -24, 1]" xsi:type="notation:RelativeBendpoints"/>
+        </edges>
+        <edges
+            source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.8"
+            target="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1" type="4006">
+            <children type="6002">
+                <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
+            <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
+            <element href="//0/@process/@activity/@activity/@links/@children.8"/>
+            <bendpoints points="[12, -24, -56, 116]$[56, -115, -12, 25]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
     </notation:Diagram>
     <tibex:NamespaceRegistry enabled="true">
@@ -1092,6 +1205,8 @@
             namespace="http://www.tibco.com/bw/xslt/custom-functions" prefix="tib"/>
         <tibex:namespaceItem
             namespace="http://www.tibco.com/namespaces/tnt/plugins/jms+f16bf7b3-d33b-467a-8a72-f897ffee4162+input" prefix="tns2"/>
+        <tibex:namespaceItem
+            namespace="http://www.example.com/namespaces/tns/1744275295353" prefix="tns3"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="/api/T1743783650328Converted/JsonSchema"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.com/namespaces/tns/1744208063291"/>
@@ -1126,6 +1241,8 @@
         <bpws:variable element="ns1:Element"
             name="OrderCreatedLog-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns5:Element" name="InventoryCheck" sca-bpel:internal="true"/>
+        <bpws:variable element="ns1:Element"
+            name="NoStockAvailable-input" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -1140,10 +1257,13 @@
             <bpws:links>
                 <bpws:link name="StartToLogger" tibex:linkType="SUCCESS"/>
                 <bpws:link name="LoggerToDatabaseUpdate" tibex:linkType="SUCCESS"/>
-                <bpws:link name="InventoryCheckToEnd" tibex:linkType="SUCCESS"/>
+                <bpws:link name="InventoryCheckToEnd" tibex:linkType="SUCCESSWITHCONDITION"/>
                 <bpws:link name="InsertOrderIntoDBToInventoryCheck" tibex:linkType="SUCCESS"/>
                 <bpws:link name="JMSSendMessageToLogger1" tibex:linkType="SUCCESS"/>
-                <bpws:link name="Logger1ToEnd" tibex:linkType="SUCCESS"/>
+                <bpws:link name="OrderCreatedLogToEmpty" tibex:linkType="SUCCESS"/>
+                <bpws:link name="InventoryCheckToCallProcess" tibex:linkType="SUCCESS"/>
+                <bpws:link name="NoStockAvailableToEmpty" tibex:linkType="SUCCESS"/>
+                <bpws:link name="EmptyToEnd" tibex:linkType="SUCCESS"/>
             </bpws:links>
             <bpws:extensionActivity>
                 <tibex:receiveEvent createInstance="yes"
@@ -1163,11 +1283,11 @@
                     name="End"
                     tibex:xpdlId="322b5bc6-c3b4-4155-b959-919148a3b671" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="Logger1ToEnd"/>
+                        <bpws:target linkName="EmptyToEnd"/>
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;/api/T1743783650328Converted/JsonSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;InsertOrderIntoDB&quot;/>&#xa;    &lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns1:Order_orderId>&#xa;            &lt;xsl:value-of select=&quot;$InsertOrderIntoDB&quot;/>&#xa;        &lt;/tns1:Order_orderId>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;/api/T1743783650328Converted/JsonSchema&quot; xmlns:tns3=&quot;http://www.example.com/namespaces/tns/1744275295353&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;InsertOrderIntoDB&quot;/>&lt;xsl:param name=&quot;InventoryCheck&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;xsl:choose>&lt;xsl:when test=&quot;$InventoryCheck/tns3:InventoryAvailable = true()&quot;>&lt;tns1:Order_orderId>&lt;xsl:value-of select=&quot;$InsertOrderIntoDB&quot;/>&lt;/tns1:Order_orderId>&lt;/xsl:when>&lt;xsl:otherwise>&lt;tns1:Order_orderId>&lt;xsl:value-of select=&quot;&amp;quot;&amp;quot;&quot;/>&lt;/tns1:Order_orderId>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1235,7 +1355,14 @@
                         <bpws:target linkName="InsertOrderIntoDBToInventoryCheck"/>
                     </bpws:targets>
                     <bpws:sources>
-                        <bpws:source linkName="InventoryCheckToEnd"/>
+                        <bpws:source linkName="InventoryCheckToEnd">
+                            <tibex:DesignExpression>
+                                <tibex:expression
+                                    expression="$InventoryCheck/ns5:InventoryAvailable" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"/>
+                            </tibex:DesignExpression>
+                            <bpws:transitionCondition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath2.0"><![CDATA[$InventoryCheck/ns5:InventoryAvailable]]></bpws:transitionCondition>
+                        </bpws:source>
+                        <bpws:source linkName="InventoryCheckToCallProcess"/>
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
@@ -1259,7 +1386,7 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+f16bf7b3-d33b-467a-8a72-f897ffee4162+input&quot; xmlns:tns1=&quot;/api/T1743783650328Converted/JsonSchema&quot; xmlns:tns=&quot;http://www.example.com/namespaces/tns/1744275295353&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:param name=&quot;InsertOrderIntoDB&quot;/>&lt;xsl:param name=&quot;InventoryCheck&quot;/>&lt;xsl:template name=&quot;SendOrderDetails-input&quot; match=&quot;/&quot;>&lt;tns2:ActivityInput>&lt;Body>&lt;tns1:Order>&lt;tns1:orderId>&lt;xsl:value-of select=&quot;$InsertOrderIntoDB&quot;/>&lt;/tns1:orderId>&lt;tns1:customerId>&lt;xsl:value-of select=&quot;$Start/tns1:customerId&quot;/>&lt;/tns1:customerId>&lt;tns1:orderDate>&lt;xsl:value-of select=&quot;current-dateTime()&quot;/>&lt;/tns1:orderDate>&lt;xsl:copy-of select=&quot;$Start/tns1:products&quot;/>&lt;xsl:choose>&lt;xsl:when test=&quot;$InventoryCheck/tns:InventoryAvailable = true()&quot;>&lt;tns1:status>&lt;xsl:value-of select=&quot;&amp;quot;Processing&amp;quot;&quot;/>&lt;/tns1:status>&lt;/xsl:when>&lt;xsl:otherwise>&lt;tns1:status>&lt;xsl:value-of select=&quot;&amp;quot;Pending&amp;quot;&quot;/>&lt;/tns1:status>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/tns1:Order>&lt;/Body>&lt;/tns2:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+f16bf7b3-d33b-467a-8a72-f897ffee4162+input&quot; xmlns:tns1=&quot;/api/T1743783650328Converted/JsonSchema&quot; xmlns:tns3=&quot;http://www.example.com/namespaces/tns/1744275295353&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;Start&quot;/>&#xa;    &lt;xsl:param name=&quot;InsertOrderIntoDB&quot;/>&#xa;    &lt;xsl:param name=&quot;InventoryCheck&quot;/>&#xa;    &lt;xsl:template name=&quot;SendOrderDetails-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns2:ActivityInput>&#xa;            &lt;Body>&#xa;                &lt;tns1:Order>&#xa;                    &lt;tns1:orderId>&#xa;                        &lt;xsl:value-of select=&quot;$InsertOrderIntoDB&quot;/>&#xa;                    &lt;/tns1:orderId>&#xa;                    &lt;tns1:customerId>&#xa;                        &lt;xsl:value-of select=&quot;$Start/tns1:customerId&quot;/>&#xa;                    &lt;/tns1:customerId>&#xa;                    &lt;tns1:orderDate>&#xa;                        &lt;xsl:value-of select=&quot;current-dateTime()&quot;/>&#xa;                    &lt;/tns1:orderDate>&#xa;                    &lt;xsl:copy-of select=&quot;$Start/tns1:products&quot;/>&#xa;                    &lt;xsl:choose>&#xa;                        &lt;xsl:when test=&quot;$InventoryCheck/tns3:InventoryAvailable = true()&quot;>&#xa;                            &lt;tns1:status>&#xa;                                &lt;xsl:value-of select=&quot;&amp;quot;Processing&amp;quot;&quot;/>&#xa;                            &lt;/tns1:status>&#xa;                        &lt;/xsl:when>&#xa;                        &lt;xsl:otherwise>&#xa;                            &lt;tns1:status>&#xa;                                &lt;xsl:value-of select=&quot;&amp;quot;Pending&amp;quot;&quot;/>&#xa;                            &lt;/tns1:status>&#xa;                        &lt;/xsl:otherwise>&#xa;                    &lt;/xsl:choose>&#xa;                &lt;/tns1:Order>&#xa;            &lt;/Body>&#xa;        &lt;/tns2:ActivityInput>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity activityTypeID="bw.jms.send"
@@ -1293,7 +1420,7 @@
                         <bpws:target linkName="JMSSendMessageToLogger1"/>
                     </bpws:targets>
                     <bpws:sources>
-                        <bpws:source linkName="Logger1ToEnd"/>
+                        <bpws:source linkName="OrderCreatedLogToEmpty"/>
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
@@ -1303,6 +1430,35 @@
                         subProcessName="orderprocessing.module.Logger" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
+            <bpws:extensionActivity>
+                <tibex:extActivity
+                    inputVariable="NoStockAvailable-input"
+                    name="NoStockAvailable"
+                    tibex:xpdlId="9405337a-2f5e-4ea9-b23d-f4f5df2a4333"
+                    type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                    <bpws:targets>
+                        <bpws:target linkName="InventoryCheckToCallProcess"/>
+                    </bpws:targets>
+                    <bpws:sources>
+                        <bpws:source linkName="NoStockAvailableToEmpty"/>
+                    </bpws:sources>
+                    <tibex:inputBindings>
+                        <tibex:inputBinding coercion=""
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.com/namespaces/tns/1744208063291&quot; xmlns:bw=&quot;http://www.tibco.com/bw/xpath/bw-custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;NoStockAvailable-input&quot; match=&quot;/&quot;>&lt;tns:Element>&lt;tns:LogMessage>&lt;xsl:value-of select=&quot;&amp;quot;No Stock Available to fulfill this order&amp;quot;&quot;/>&lt;/tns:LogMessage>&lt;tns:Severity>&lt;xsl:value-of select=&quot;bw:getModuleProperty(&amp;quot;LogLevel&amp;quot;)&quot;/>&lt;/tns:Severity>&lt;/tns:Element>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                    </tibex:inputBindings>
+                    <tibex:CallProcess
+                        subProcessName="orderprocessing.module.Logger" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                </tibex:extActivity>
+            </bpws:extensionActivity>
+            <bpws:empty name="Empty" tibex:xpdlId="02f0f6f6-e11b-4a59-8cf4-71ec4c1becbc">
+                <bpws:targets>
+                    <bpws:target linkName="OrderCreatedLogToEmpty"/>
+                    <bpws:target linkName="NoStockAvailableToEmpty"/>
+                </bpws:targets>
+                <bpws:sources>
+                    <bpws:source linkName="EmptyToEnd"/>
+                </bpws:sources>
+            </bpws:empty>
         </bpws:flow>
     </bpws:scope>
 </bpws:process>
