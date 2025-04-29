@@ -76,13 +76,13 @@
 		</globalVariable>
 		<globalVariable>
 			<name>//OrderProcessing.module//EMSURL</name>
-			<value>tcp://localhost:7222</value>
+			<value>tcp://192.168.1.30:9011</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<isOverride>false</isOverride>
+			<isOverride>true</isOverride>
 			<useLookupValue>false</useLookupValue>
-			<lookupValue>tcp://localhost:7222</lookupValue>
+			<lookupValue>tcp://192.168.1.30:9011</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>LogLevel</name>
@@ -96,13 +96,51 @@
 		</globalVariable>
 		<globalVariable>
 			<name>EMSURL</name>
-			<value>tcp://localhost:7222</value>
+			<value>tcp://192.168.1.30:9011</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<isOverride>true</isOverride>
 			<useLookupValue>true</useLookupValue>
-			<lookupValue>tcp://localhost:7222</lookupValue>
+			<lookupValue>tcp://192.168.1.30:9011</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>//OrderProcessing.module//EMSUserName</name>
+			<value>%%EMSUserName%%</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>false</useLookupValue>
+			<lookupValue>%%EMSUserName%%</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>//OrderProcessing.module//EMSPassword</name>
+			<value>%%EMSPassword%%</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Password</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>false</useLookupValue>
+			<lookupValue>%%EMSPassword%%</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>EMSUserName</name>
+			<value>admin</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>EMSPassword</name>
+			<value>#!^0X/0lIDl8mGDfzVx142YWSBOT3U3g47i</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Password</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
 		</globalVariable>
 	</globalVariables>
 </repository>

@@ -104,5 +104,43 @@
 			<useLookupValue>false</useLookupValue>
 			<lookupValue>tcp://ems-emsactive.dw-dp.svc:9011,tcp://ems-ems.dw-dp.svc:9011</lookupValue>
 		</globalVariable>
+		<globalVariable>
+			<name>//OrderProcessing.module//EMSUserName</name>
+			<value>admin</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>//OrderProcessing.module//EMSPassword</name>
+			<value>#!^0X/0lIDl8mGDfzVx142YWSBOT3U3g47i</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Password</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>EMSUserName</name>
+			<value>#EMSUserName#</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#EMSUserName#</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>EMSPassword</name>
+			<value>#EMSPassword#</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Password</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#EMSPassword#</lookupValue>
+		</globalVariable>
 	</globalVariables>
 </repository>

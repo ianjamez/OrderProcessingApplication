@@ -2,5 +2,9 @@
 <jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://xsd.tns.tibco.com/bw/models/sharedresource/jms" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_vA8ioRV5EfCpG_csTpS_wg" name="orderprocessing.module.JMSConnectionResource" type="jms:JMSConnectionFactory">
   <jndi:configuration xsi:type="jms:DirectConnectionFactory" xmi:id="_qr9IQBWNEfC75KHAhywXaQ" factoryType="Queue/Topic">
     <substitutionBindings xmi:id="_sJEmgBWNEfC75KHAhywXaQ" template="providerURL" propName="EMSURL"/>
+    <userCredentials xmi:id="_qrfH0CQrEfCz0qefG0tRFQ">
+      <substitutionBindings xmi:id="_1VPNYCQuEfCz0qefG0tRFQ" template="username" propName="EMSUserName"/>
+      <substitutionBindings xmi:id="_kXLUUCQvEfCz0qefG0tRFQ" template="password" propName="EMSPassword"/>
+    </userCredentials>
   </jndi:configuration>
 </jndi:namedResource>
