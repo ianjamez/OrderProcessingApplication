@@ -105,6 +105,7 @@ metadata:
 spec:
   owner: group:default/business-leadership # The higher-level owner for this domain
 
+---
 # You might also add Group entities if they are not already in your Backstage catalog.
 # --- ENTITY 6: Group (Order Processing Team) ---
 apiVersion: backstage.io/v1alpha1
@@ -123,6 +124,8 @@ spec:
   members: # List members by their User entity name
      - user:default/davewins
      - user:default/another-dev
+
+---
 #
 # --- ENTITY 7: Group (Middleware Team) ---
 apiVersion: backstage.io/v1alpha1
