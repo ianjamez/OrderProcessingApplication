@@ -144,7 +144,7 @@ spec:
     - user:default/middleware-engineer1
 
 ---
-# --- ENTITY 7: API (Order Processing API) ---
+# --- ENTITY 8: API (Order Processing API) ---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
@@ -155,6 +155,8 @@ metadata:
     - order-processing
     - api
     - rest
+  annotations:
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: openapi
   lifecycle: production
