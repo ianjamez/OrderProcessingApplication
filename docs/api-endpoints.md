@@ -1,138 +1,238 @@
 # API Endpoints
 
-This document describes the primary API endpoints consumed by, and potentially provided by, the Order Processing Application.
+This document describes the API provided by the OrderProcessing application, based on its Swagger definition.
 
-## 1. APIs Consumed by Order Processing Application
+## OrderProcessing API
 
-The Order Processing Application integrates with several external and internal services.
+This API provides operations for managing customer orders.
 
-### 1.1. Payment Gateway API
+### Base URL
 
-* **Description:** External API for authorizing and capturing payments.
-* **Provider:** Third-party payment gateway service.
-* **Base URL:** `https://api.paymentgateway.com/v1` (Production)
-* **Authentication:** OAuth 2.0 Client Credentials flow.
-* **Endpoints:**
-    * `POST /authorize`: Authorizes a payment amount against a customer's payment method.
-        * **Request Body (JSON):**
-            ```json
-            {
-              "transactionId": "string",
-              "amount": "decimal",
-              "currency": "string",
-              "paymentMethodToken": "string",
-              "customerReference": "string"
-            }
-            ```
-        * **Response Body (JSON):**
-            ```json
-            {
-              "transactionId": "string",
-              "status": "AUTHORIZED" | "FAILED",
-              "authorizationCode": "string",
-              "message": "string"
-            }
-            ```
-    * `POST /capture`: Captures a previously authorized payment.
-        * **Request Body (JSON):**
-            ```json
-            {
-              "transactionId": "string",
-              "authorizationCode": "string",
-              "amount": "decimal"
-            }
-            ```
-        * **Response Body (JSON):**
-            ```json
-            {
-              "transactionId": "string",
-              "status": "CAPTURED" | "FAILED",
-              "message": "string"
-            }
-            ```
-* **Error Handling:** HTTP status codes (4xx for client errors, 5xx for server errors). Specific error codes documented by the payment gateway.
+`https://bwce.vewins.co.uk:443/tibco/apps/d0mrfgqd9jcaeh9qlih0/Orders`
 
-### 1.2. CRM Customer Lookup API
+### Schemes
 
-* **Description:** Internal API for retrieving customer details based on a customer ID.
-* **Provider:** Internal CRM service.
-* **Base URL:** `http://crm-service.internal/api/v2`
-* **Authentication:** Internal API Key (passed in `X-API-KEY` header).
-* **Endpoint:**
-    * `GET /customers/{customerId}`: Retrieves customer details.
-        * **Path Parameter:** `customerId` (string)
-        * **Response Body (JSON):**
-            ```json
-            {
-              "customerId": "string",
-              "firstName": "string",
-              "lastName": "string",
-              "email": "string",
-              "phone": "string"
-            }
-            ```
-* **Error Handling:** Standard HTTP status codes.
+`https`
 
+### Consumes
+
+`application/json`
+
+### Produces
+
+`application/json`
+
+### Endpoints
+
+#### GET /api/orders/customer/{customerId}
+
+* **Description:** Retrieve all orders for a specific customer.
+* **Tags:** Orders
+* **Summary:** Retrieve all orders for a specific customer.
+* **Parameters:**
+    * `customerId` (path, string, required): Identifier of the customer to retrieve orders for.
+* **Responses:**
+    * `200`:
+        * **Description:** List of customer orders retrieved successfully.
+        * **Schema:** `array` of [`Order`](#order)
+    * `500`:
+        * **Description:** Internal server error (e.g., simulated database failure).
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+    * `404`:
+        * **Description:** Customer not found (if you choose to implement this level of simulation).
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+
+#### POST /api/orders
+
+* **Description:** Place a new order.
+* **Tags:** Orders
+* **Summary:** Place a new order.
+* **Parameters:**
+    * `OrderRequest` (body, [`OrderRequest`](#orderrequest), required): Order details to create.
+* **Responses:**
+    * `200`:
+        * **Description:** Sample Description
+        * **Schema:** [`OrderCreationResponse`](#ordercreationresponse)
+    * `400`:
+        * **Description:** Invalid request payload.
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+    * `500`:
+        * **Description:** Internal server error (e.g., simulated backend failure).
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+
+#### GET /api/orders/{orderId}
+
+* **Description:** Retrieve details of a specific order.
+* **Tags:** Orders
+* **Summary:** Retrieve details of a specific order.
+* **Parameters:**
+    * `orderId` (path, string, required): Identifier of the order to retrieve.
+* **Responses:**
+    * `500`:
+        * **Description:** Internal server error (e.g., simulated database failure).
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+    * `404`:
+        * **Description:** Order not found.
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+    * `200`:
+        * **Description:** Order details retrieved successfully.
+        * **Schema:** [`Order`](#order)
+
+#### PUT /api/orders/{orderId}
+
+* **Description:** Update the status of an existing order.
+* **Tags:** Orders
+* **Summary:** Update the status of an existing order.
+* **Parameters:**
+    * `orderId` (path, string, required): Identifier of the order to retrieve.
+    * `OrderStatusUpdateRequest` (body, [`OrderStatusUpdateRequest`](#orderstatusupdaterequest), required): New status for the order.
+* **Responses:**
+    * `500`:
+        * **Description:** Internal server error (e.g., simulated backend failure).
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+    * `200`:
+        * **Description:** Order status updated successfully.
+    * `404`:
+        * **Description:** Order not found.
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+    * `400`:
+        * **Description:** Invalid request payload.
+        * **Schema:** [`ErrorResponse`](#errorresponse)
+### Definitions
+
+#### Product
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the product."
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Quantity of the product ordered.",
+      "minimum": 1
+    }
+  }
+}
+
+{
+  "type": "object",
+  "required": [
+    "customerId",
+    "products"
+  ],
+  "properties": {
+    "customerId": {
+      "type": "string",
+      "description": "Identifier of the customer placing the order."
+    },
+    "products": {
+      "type": "array",
+      "description": "List of products in the order.",
+      "items": {
+        "$ref": "#/definitions/Product"
+      }
+    }
+  }
+}
+```
 ---
 
-## 2. APIs Provided by Order Processing Application
+#### Order
 
-Currently, the Order Processing Application primarily consumes APIs and publishes messages to EMS queues. It does not directly expose any synchronous REST/SOAP APIs for external consumption.
+```json
+{
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "Unique identifier of the order.",
+      "readOnly": true
+    },
+    "customerId": {
+      "type": "string",
+      "description": "Identifier of the customer."
+    },
+    "orderDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the order was placed.",
+      "readOnly": true
+    },
+    "products": {
+      "type": "array",
+      "description": "List of products in the order.",
+      "items": {
+        "$ref": "#/definitions/Product"
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the order.",
+      "enum": [
+        "Pending",
+        "Processing",
+        "Shipped",
+        "Cancelled"
+      ]
+    }
+  }
+}
+```
 
-### 2.1. Messaging APIs (via TIBCO EMS)
+#### Order Update
 
-While not traditional HTTP/REST APIs, the application effectively provides "messaging APIs" for other services to consume its outputs.
+```JSON
+{
+  "type": "object",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "New status for the order.",
+      "enum": [
+        "Processing",
+        "Shipped",
+        "Cancelled"
+      ]
+    }
+  }
+}
+```
 
-* **Input Queue: `queue.order.new`**
-    * **Description:** Expects new order requests from upstream systems.
-    * **Message Format (JSON Schema):**
-        ```json
-        {
-          "$schema": "[http://json-schema.org/draft-07/schema#](http://json-schema.org/draft-07/schema#)",
-          "title": "NewOrderRequest",
-          "type": "object",
-          "properties": {
-            "orderId": { "type": "string", "description": "Unique identifier for the order" },
-            "customerId": { "type": "string", "description": "ID of the customer placing the order" },
-            "items": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "productId": { "type": "string" },
-                  "quantity": { "type": "integer" }
-                },
-                "required": ["productId", "quantity"]
-              }
-            },
-            "totalAmount": { "type": "number" },
-            "currency": { "type": "string" },
-            "paymentDetails": { "type": "object" }
-          },
-          "required": ["orderId", "customerId", "items", "totalAmount"]
-        }
-        ```
-    * **Consumption:** Expected to be consumed by the `OrderReceiver` BW process.
+#### Error Response
+```JSON
+{
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "integer",
+      "description": "Error code."
+    },
+    "message": {
+      "type": "string",
+      "description": "Error message."
+    }
+  }
+}
+```
 
-* **Output Queue: `queue.order.status`**
-    * **Description:** Publishes real-time updates on the lifecycle status of an order.
-    * **Message Format (JSON Schema):**
-        ```json
-        {
-          "$schema": "[http://json-schema.org/draft-07/schema#](http://json-schema.org/draft-07/schema#)",
-          "title": "OrderStatusUpdate",
-          "type": "object",
-          "properties": {
-            "orderId": { "type": "string", "description": "Unique identifier for the order" },
-            "status": {
-              "type": "string",
-              "enum": ["RECEIVED", "VALIDATED", "PAYMENT_AUTHORIZED", "ORDER_SAVED", "COMPLETED", "FAILED"],
-              "description": "Current status of the order"
-            },
-            "timestamp": { "type": "string", "format": "date-time" },
-            "message": { "type": "string", "description": "Optional: additional details about the status" }
-          },
-          "required": ["orderId", "status", "timestamp"]
-        }
-        ```
-    * **Consumption:** Consumed by `Fulfillment Service` and `Notification Service`.
+#### Order Response
+
+```JSON
+{
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "The newly created order ID."
+    }
+  }
+}
+```
+

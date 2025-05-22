@@ -29,8 +29,8 @@ spec:
     - resource:default/order-database-primary # Reference to the Database Resource defined below
   # consumesApis:
   #   - api:default/payment-gateway-api
-  # providesApis:
-  #   - api:default/order-submission-api
+  providesApis:
+    - order-processing-api # Reference to the API defined below
 
 ---
 # --- ENTITY 2: Resource (TIBCO EMS Broker) ---
@@ -142,3 +142,279 @@ spec:
   children: []
   members:
     - user:default/middleware-engineer1
+
+---
+# --- ENTITY 7: API (Order Processing API) ---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: order-processing-api
+  description: API for placing and managing customer orders.
+  # namespace: default
+  tags:
+    - order-processing
+    - api
+    - rest
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:default/order-processing-team
+  definition: |
+    {
+      "swagger" : "2.0",
+      "info" : {
+        "version" : "1.0",
+        "title" : "OrderProcessing"
+      },
+      "host" : "bwce.vewins.co.uk:443",
+      "basePath" : "/tibco/apps/d0mrfgqd9jcaeh9qlih0/Orders",
+      "schemes" : [ "https" ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ],
+      "paths" : {
+        "/api/orders/customer/{customerId}" : {
+          "get" : {
+            "tags" : [ "Orders" ],
+            "summary" : "Retrieve all orders for a specific customer.",
+            "parameters" : [ {
+              "name" : "customerId",
+              "in" : "path",
+              "description" : "Identifier of the customer to retrieve orders for.",
+              "required" : true,
+              "type" : "string"
+            } ],
+            "responses" : {
+              "200" : {
+                "description" : "List of customer orders retrieved successfully.",
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/Order"
+                  }
+                }
+              },
+              "500" : {
+                "description" : "Internal server error (e.g., simulated database failure).",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              },
+              "404" : {
+                "description" : "Customer not found (if you choose to implement this level of simulation).",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "/api/orders" : {
+          "post" : {
+            "tags" : [ "Orders" ],
+            "summary" : "Place a new order.",
+            "parameters" : [ {
+              "in" : "body",
+              "name" : "OrderRequest",
+              "description" : "Order details to create.",
+              "required" : true,
+              "schema" : {
+                "$ref" : "#/definitions/OrderRequest"
+              }
+            } ],
+            "responses" : {
+              "200" : {
+                "description" : "Sample Description",
+                "schema" : {
+                  "$ref" : "#/definitions/OrderCreationResponse"
+                }
+              },
+              "400" : {
+                "description" : "Invalid request payload.",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              },
+              "500" : {
+                "description" : "Internal server error (e.g., simulated backend failure).",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "/api/orders/{orderId}" : {
+          "get" : {
+            "tags" : [ "Orders" ],
+            "summary" : "Retrieve details of a specific order.",
+            "parameters" : [ {
+              "name" : "orderId",
+              "in" : "path",
+              "description" : "Identifier of the order to retrieve.",
+              "required" : true,
+              "type" : "string"
+            } ],
+            "responses" : {
+              "500" : {
+                "description" : "Internal server error (e.g., simulated database failure).",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              },
+              "404" : {
+                "description" : "Order not found.",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              },
+              "200" : {
+                "description" : "Order details retrieved successfully.",
+                "schema" : {
+                  "$ref" : "#/definitions/Order"
+                }
+              }
+            }
+          },
+          "put" : {
+            "tags" : [ "Orders" ],
+            "summary" : "Update the status of an existing order.",
+            "parameters" : [ {
+              "name" : "orderId",
+              "in" : "path",
+              "description" : "Identifier of the order to retrieve.",
+              "required" : true,
+              "type" : "string"
+            }, {
+              "in" : "body",
+              "name" : "OrderStatusUpdateRequest",
+              "description" : "New status for the order.",
+              "required" : true,
+              "schema" : {
+                "$ref" : "#/definitions/OrderStatusUpdateRequest"
+              }
+            } ],
+            "responses" : {
+              "500" : {
+                "description" : "Internal server error (e.g., simulated backend failure).",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              },
+              "200" : {
+                "description" : "Order status updated successfully."
+              },
+              "404" : {
+                "description" : "Order not found.",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              },
+              "400" : {
+                "description" : "Invalid request payload.",
+                "schema" : {
+                  "$ref" : "#/definitions/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "definitions" : {
+        "Product" : {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "description" : "Name of the product."
+            },
+            "quantity" : {
+              "type" : "integer",
+              "description" : "Quantity of the product ordered.",
+              "minimum" : 1
+            }
+          }
+        },
+        "OrderRequest" : {
+          "type" : "object",
+          "required" : [ "customerId", "products" ],
+          "properties" : {
+            "customerId" : {
+              "type" : "string",
+              "description" : "Identifier of the customer placing the order."
+            },
+            "products" : {
+              "type" : "array",
+              "description" : "List of products in the order.",
+              "items" : {
+                "$ref" : "#/definitions/Product"
+              }
+            }
+          }
+        },
+        "Order" : {
+          "type" : "object",
+          "properties" : {
+            "orderId" : {
+              "type" : "string",
+              "description" : "Unique identifier of the order.",
+              "readOnly" : true
+            },
+            "customerId" : {
+              "type" : "string",
+              "description" : "Identifier of the customer."
+            },
+            "orderDate" : {
+              "type" : "string",
+              "format" : "date-time",
+              "description" : "Date and time the order was placed.",
+              "readOnly" : true
+            },
+            "products" : {
+              "type" : "array",
+              "description" : "List of products in the order.",
+              "items" : {
+                "$ref" : "#/definitions/Product"
+              }
+            },
+            "status" : {
+              "type" : "string",
+              "description" : "Current status of the order.",
+              "enum" : [ "Pending", "Processing", "Shipped", "Cancelled" ]
+            }
+          }
+        },
+        "OrderStatusUpdateRequest" : {
+          "type" : "object",
+          "required" : [ "status" ],
+          "properties" : {
+            "status" : {
+              "type" : "string",
+              "description" : "New status for the order.",
+              "enum" : [ "Processing", "Shipped", "Cancelled" ]
+            }
+          }
+        },
+        "ErrorResponse" : {
+          "type" : "object",
+          "properties" : {
+            "code" : {
+              "type" : "integer",
+              "description" : "Error code."
+            },
+            "message" : {
+              "type" : "string",
+              "description" : "Error message."
+            }
+          }
+        },
+        "OrderCreationResponse" : {
+          "type" : "object",
+          "properties" : {
+            "orderId" : {
+              "type" : "string",
+              "description" : "The newly created order ID."
+            }
+          }
+        }
+      }
+    }
