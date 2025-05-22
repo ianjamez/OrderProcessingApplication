@@ -27,7 +27,8 @@ graph TD
 
     C -- Calls --> I
     C -- Reads/Writes --> J
-    ---
+```
+---
 
 ### Part 2: Component Breakdown
 
@@ -43,7 +44,7 @@ Now, here's the second section, detailing the component breakdown within the Bus
 * **Notification Service:** Consumes order status updates to send customer communications.
 * **Payment Gateway API:** An external service called for payment processing.
 * **CRM System:** Used for customer data lookups (reads) and possibly updates (writes).
-
+```
 ---
 
 ## 2. Component Breakdown (Order Processing App - BWCE)
@@ -78,14 +79,8 @@ graph TD
     B --> C[PaymentService]
     B --> D[DatabaseService]
     B --> E[CRMService]
+```
 
----
-
-### Part 3: Data Flow, Key Technologies, and Deployment Considerations
-
-Finally, here's the last section of the document:
-
-```markdown
 ---
 
 ## 3. Data Flow
