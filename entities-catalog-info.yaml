@@ -1,0 +1,18 @@
+# catalog-info.yaml for System
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: order-management-system
+  description: Handles the end-to-end processing of customer orders.
+spec:
+  owner: group:default/sales-operations-lead
+  domain: sales-operations # Links to the domain
+---
+# catalog-info.yaml for Domain
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: sales-operations
+  description: Encompasses all systems and components related to sales and order fulfillment.
+spec:
+  owner: group:default/business-leadership

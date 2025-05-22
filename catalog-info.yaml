@@ -2,9 +2,43 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: OrderProcessingApplication
+  description: A BusinessWorks application responsible for processing customer orders, interacting with TIBCO EMS and a transactional database.
   annotations:
+    # GitHub repository for the application code
     github.com/project-slug: davewins/OrderProcessingApplication
+    # Path to the TechDocs documentation relative to the repository root
+    backstage.io/techdocs-ref: dir:.
+    # Example annotation for TIBCO BusinessWorks specific details (customizable)
+    # This could point to a specific version or configuration within BWCE
+    tibco.com/bwce-version: 6.x.x
+    tibco.com/ems-connection-factory: "OrderProcessingCF" # Example: Name of the EMS connection factory
+  tags:
+    - tibco
+    - businessworks
+    - integration
+    - order-processing
+    - ems
+    - database
 spec:
-  type: other
-  lifecycle: unknown
-  owner: tibco-imported
+  # Type should be 'service' for a backend application that provides functionality
+  type: service
+  # Lifecycle can be set to "production", "staging", "experimental", or "deprecated"
+  # Given it's an application, "production" or "staging" is more appropriate than "unknown"
+  lifecycle: production # Or 'staging', 'experimental', etc.
+  # The owner of the component, often a team or group
+  owner: group:default/order-processing-team # Assuming you have a "default" namespace and "order-processing-team" group in Backstage
+  # Relationships to other entities in your Backstage catalog
+  dependsOn:
+    # Dependency on TIBCO EMS (modelled as a Resource)
+    - resource:default/tibco-ems-broker-1 # Example: Reference to an EMS broker resource
+    # Dependency on a database (modelled as a Resource)
+    - resource:default/order-database-primary # Example: Reference to your database resource
+  consumesApis:
+    # If your BW app consumes external APIs, list them here
+    # Example: If it calls an external payment gateway API
+    # - api:default/payment-gateway-api
+  providesApis:
+    # If your BW app exposes APIs (e.g., via HTTP, SOAP, REST, or even JMS API for other apps to consume), list them here
+    # - api:default/order-submission-api # Example: If it provides a REST API for submitting orders
+  system: order-management-system # Group related components under a larger system
+  domain: sales-operations # Group related systems and components under a business domain

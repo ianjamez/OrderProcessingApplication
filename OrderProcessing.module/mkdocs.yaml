@@ -1,0 +1,14 @@
+# mkdocs.yml in your GitHub repository
+site_name: Order Processing Application Docs
+site_description: Documentation for the TIBCO BusinessWorks Order Processing Application.
+
+nav:
+  - Introduction: index.md
+  - Architecture: architecture.md
+  - TIBCO EMS Integration: ems-integration.md
+  - Database Interactions: database-interactions.md
+  - API Endpoints: api-endpoints.md
+  - Troubleshooting: troubleshooting.md
+
+plugins:
+  - techdocs-core # Essential for Backstage TechDocs
