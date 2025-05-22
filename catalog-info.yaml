@@ -33,11 +33,11 @@ spec:
     - resource:default/tibco-ems-broker-1 # Example: Reference to an EMS broker resource
     # Dependency on a database (modelled as a Resource)
     - resource:default/order-database-primary # Example: Reference to your database resource
-  consumesApis:
+  #consumesApis:
     # If your BW app consumes external APIs, list them here
     # Example: If it calls an external payment gateway API
     # - api:default/payment-gateway-api
-  providesApis:
+  #providesApis:
     # If your BW app exposes APIs (e.g., via HTTP, SOAP, REST, or even JMS API for other apps to consume), list them here
     # - api:default/order-submission-api # Example: If it provides a REST API for submitting orders
   system: order-management-system # Group related components under a larger system
