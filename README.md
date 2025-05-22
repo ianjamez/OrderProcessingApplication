@@ -193,7 +193,6 @@ To provide a self-contained and runnable demonstration, the application incorpor
 * `Orders`
 * `LogMessage`
 * `StockCheck`
-* `AuditQueue`
 
 ---
 
