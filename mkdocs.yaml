@@ -1,4 +1,5 @@
-# mkdocs.yml in your GitHub repository
+# mkdocs.yml in your GitHub repository (e.g., davewins/OrderProcessingApplication)
+
 site_name: Order Processing Application Docs
 site_description: Documentation for the TIBCO BusinessWorks Order Processing Application.
 
@@ -12,3 +13,14 @@ nav:
 
 plugins:
   - techdocs-core # Essential for Backstage TechDocs
+
+markdown_extensions: # <--- ADD THIS SECTION
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          # NOTE: The default `format` for mermaid is usually just an empty string
+          # as the Backstage frontend will handle the rendering based on the class.
+          # If this doesn't work, sometimes you might need:
+          # format: !!python/name:pymdownx.superfences.fence_code_format
