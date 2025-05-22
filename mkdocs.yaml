@@ -1,5 +1,3 @@
-# mkdocs.yml in your GitHub repository (e.g., davewins/OrderProcessingApplication)
-
 site_name: Order Processing Application Docs
 site_description: Documentation for the TIBCO BusinessWorks Order Processing Application.
 
@@ -12,9 +10,9 @@ nav:
   - Troubleshooting: troubleshooting.md
 
 plugins:
-  - techdocs-core # Essential for Backstage TechDocs
+  - techdocs-core
 
-markdown_extensions: # <--- ADD THIS SECTION
+markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences:
       custom_fences:
