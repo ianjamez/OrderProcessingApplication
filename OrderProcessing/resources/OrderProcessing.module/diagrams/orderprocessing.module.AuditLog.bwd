@@ -1,0 +1,26 @@
+<process-dir height="412" id="orderprocessing.module.AuditLog" name="orderprocessing.module.AuditLog" type="process" width="609" x="140" y="20">
+    <ProcessInfo createdBy="dave" createdOn="Fri Apr 11 10:13:58 BST 2025" description="" modifiedBy="" modifiedOn="" modifiers="public" productVersion="2.10.0 HF2 V49 2025-03-21" scalable="false" singleton="true" stateless="true" type="IT"/>
+    <link-dir id="dcbd3f5c-ed7c-4f35-a03d-8094157942f4" label="" linkType="SUCCESS" name="JMSReceiveMessageToSleep" points="[[155,222],[240,222]]" source="3f084186-7045-4fb7-8dd8-4dc253e1eaad" target="c4ddf8bc-681b-4d71-85c2-bdbb40649f42"/>
+    <activity-dir height="48" id="3f084186-7045-4fb7-8dd8-4dc253e1eaad" name="JMSReceiveMessage" type="bw.jms.receive" width="48" x="106" y="198">
+        <BWActivity activityTypeID="bw.jms.receive" version="6.0.0.20132205">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/jms#//JMSReceiverEventSource"/>
+                    <value connectionReference="jmsConnection" destinationName="LogMessage" maxSessions="1" messagingStyle="Queue" receiveTimeout="2" type="jms:JMSReceiverEventSource"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+    <activity-dir height="48" id="c4ddf8bc-681b-4d71-85c2-bdbb40649f42" name="UpdateAuditDatabase" type="bw.generalactivities.sleep" width="48" x="240" y="198">
+        <inputBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://tns.tibco.com/bw/activity/sleep/xsd&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;&gt;&lt;xsl:template name=&quot;UpdateAuditDatabase-input&quot; match=&quot;/&quot;&gt;&lt;tns:SleepInputSchema&gt;&lt;IntervalInMillisec&gt;&lt;xsl:value-of select=&quot;tib:random(2, 300)&quot;/&gt;&lt;/IntervalInMillisec&gt;&lt;/tns:SleepInputSchema&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <partBinding expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://tns.tibco.com/bw/activity/sleep/xsd&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;&gt;&lt;xsl:template name=&quot;UpdateAuditDatabase-input&quot; match=&quot;/&quot;&gt;&lt;tns:SleepInputSchema&gt;&lt;IntervalInMillisec&gt;&lt;xsl:value-of select=&quot;tib:random(2, 300)&quot;/&gt;&lt;/IntervalInMillisec&gt;&lt;/tns:SleepInputSchema&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"/>
+        <BWActivity activityTypeID="bw.generalactivities.sleep">
+            <activityConfig>
+                <properties name="config" type="activityconfig:EMFProperty">
+                    <type href="http://ns.tibco.com/bw/palette/generalactivities#//Sleep"/>
+                    <value type="generalactivities:Sleep"/>
+                </properties>
+            </activityConfig>
+        </BWActivity>
+    </activity-dir>
+</process-dir>
