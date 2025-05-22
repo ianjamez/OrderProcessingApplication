@@ -1,17 +1,16 @@
+# catalog-info.yaml in your GitHub repository (e.g., davewins/OrderProcessingApplication)
+
+# --- ENTITY 1: Component (Your Application) ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: OrderProcessingApplication
   description: A BusinessWorks application responsible for processing customer orders, interacting with TIBCO EMS and a transactional database.
   annotations:
-    # GitHub repository for the application code
     github.com/project-slug: davewins/OrderProcessingApplication
-    # Path to the TechDocs documentation relative to the repository root
     backstage.io/techdocs-ref: dir:.
-    # Example annotation for TIBCO BusinessWorks specific details (customizable)
-    # This could point to a specific version or configuration within BWCE
     tibco.com/bwce-version: 6.x.x
-    tibco.com/ems-connection-factory: "OrderProcessingCF" # Example: Name of the EMS connection factory
+    tibco.com/ems-connection-factory: "OrderProcessingCF"
   tags:
     - tibco
     - businessworks
@@ -20,25 +19,123 @@ metadata:
     - ems
     - database
 spec:
-  # Type should be 'service' for a backend application that provides functionality
   type: service
-  # Lifecycle can be set to "production", "staging", "experimental", or "deprecated"
-  # Given it's an application, "production" or "staging" is more appropriate than "unknown"
-  lifecycle: production # Or 'staging', 'experimental', etc.
-  # The owner of the component, often a team or group
-  owner: group:default/order-processing-team # Assuming you have a "default" namespace and "order-processing-team" group in Backstage
-  # Relationships to other entities in your Backstage catalog
+  lifecycle: production
+  owner: group:default/order-processing-team
+  system: order-management-system # Reference to the System defined below
+  domain: sales-operations # Reference to the Domain defined below
   dependsOn:
-    # Dependency on TIBCO EMS (modelled as a Resource)
-    - resource:default/tibco-ems-broker-1 # Example: Reference to an EMS broker resource
-    # Dependency on a database (modelled as a Resource)
-    - resource:default/order-database-primary # Example: Reference to your database resource
-  #consumesApis:
-    # If your BW app consumes external APIs, list them here
-    # Example: If it calls an external payment gateway API
-    # - api:default/payment-gateway-api
-  #providesApis:
-    # If your BW app exposes APIs (e.g., via HTTP, SOAP, REST, or even JMS API for other apps to consume), list them here
-    # - api:default/order-submission-api # Example: If it provides a REST API for submitting orders
-  system: order-management-system # Group related components under a larger system
-  domain: sales-operations # Group related systems and components under a business domain
+    - resource:default/tibco-ems-broker-1 # Reference to the EMS Resource defined below
+    - resource:default/order-database-primary # Reference to the Database Resource defined below
+  # consumesApis:
+  #   - api:default/payment-gateway-api
+  # providesApis:
+  #   - api:default/order-submission-api
+
+---
+# --- ENTITY 2: Resource (TIBCO EMS Broker) ---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: tibco-ems-broker-1
+  description: Primary TIBCO EMS Broker for order processing queues.
+  # Namespace is optional, defaults to 'default' if not specified
+  # namespace: default
+  annotations:
+    tibco.com/ems-url: "tcp://localhost:7222"
+  tags:
+    - tibco
+    - ems
+    - messaging
+spec:
+  type: messaging-broker # You can define custom resource types
+  owner: group:default/middleware-team
+  system: messaging-infrastructure # Example: EMS could belong to a separate messaging system
+  # Relates to the Domain if applicable
+  domain: enterprise-integration
+
+---
+# --- ENTITY 3: Resource (Order Database) ---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: order-database-primary
+  description: PostgreSQL database for storing order data.
+  # namespace: default
+  annotations:
+    db.com/connection-string: "jdbc:postgresql://orderdb:5432/orders"
+    db.com/type: "postgresql"
+  tags:
+    - database
+    - postgresql
+    - orders
+spec:
+  type: database
+  owner: group:default/data-platform-team
+  system: order-management-system # This database is part of the Order Management System
+  domain: sales-operations
+
+---
+# --- ENTITY 4: System (Order Management System) ---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: order-management-system
+  description: Orchestrates the end-to-end processing and fulfillment of customer orders.
+  # namespace: default
+  tags:
+    - order-management
+    - core-business
+spec:
+  owner: group:default/sales-operations-lead # The team or person responsible for the whole system
+  domain: sales-operations # Reference to the Domain defined below
+
+---
+# --- ENTITY 5: Domain (Sales Operations) ---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: sales-operations
+  description: Represents the business domain encompassing all sales and order fulfillment activities.
+  # namespace: default
+  tags:
+    - business-domain
+    - sales
+    - operations
+spec:
+  owner: group:default/business-leadership # The higher-level owner for this domain
+
+# You might also add Group entities if they are not already in your Backstage catalog.
+# --- ENTITY 6: Group (Order Processing Team) ---
+# apiVersion: backstage.io/v1alpha1
+# kind: Group
+# metadata:
+#   name: order-processing-team
+#   description: The team responsible for developing and maintaining the order processing applications.
+# spec:
+#   type: team
+#   profile:
+#     displayName: Order Processing Team
+#     email: order.processing@example.com
+#     picture: https://example.com/team-icons/order-processing.png
+#   parent: default/development-department # If you have a hierarchy of groups
+#   children: [] # List child groups/users if any
+#   members: # List members by their User entity name
+#     - user:default/davewins
+#     - user:default/another-dev
+#
+# --- ENTITY 7: Group (Middleware Team) ---
+# apiVersion: backstage.io/v1alpha1
+# kind: Group
+# metadata:
+#   name: middleware-team
+#   description: Team managing shared middleware services like TIBCO EMS.
+# spec:
+#   type: team
+#   profile:
+#     displayName: Middleware Team
+#     email: middleware@example.com
+#   parent: default/platform-engineering # Example parent group
+#   children: []
+#   members:
+#     - user:default/middleware-engineer1
