@@ -419,54 +419,10 @@ spec:
   parent: default/root # Self-referencing or omit if truly the absolute root
   children: # Top-level children groups/departments
     - group:default/business-leadership
-    # - group:default/it-ops # Example: Other top-level groups
   members: [] # No individual members at this level, only child groups typically
 
 ---
-# --- ENTITY 10: Group (Development Department) ---
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: development-department
-  description: The overarching department for all development teams.
-  tags:
-    - department
-    - engineering
-spec:
-  type: department
-  profile:
-    displayName: Development Department
-    email: dev-dept@example.com
-  parent: default/business-leadership # Parent is the Business Leadership Group
-  children: # Child groups will be order-processing-team and middleware-team
-    - group:default/order-processing-team
-    - group:default/middleware-team
-  members:
-    - user:default/dev-dept-head # Example user for the head of this department
-
----
-# --- ENTITY 11: Group (Sales Operations Lead) ---
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: sales-operations-lead
-  description: The leadership team responsible for the Sales Operations Domain.
-  tags:
-    - leadership
-    - sales
-    - operations
-spec:
-  type: team
-  profile:
-    displayName: Sales Operations Lead
-    email: sales-ops-lead@example.com
-  parent: default/business-leadership # Parent is the Business Leadership Group
-  children: [] # No child groups defined for this example
-  members:
-    - user:default/sales-lead-1 # Example user for a sales lead
-
----
-# --- ENTITY 12: Group (Business Leadership) ---
+# --- ENTITY 10: Group (Business Leadership) ---
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
@@ -489,37 +445,213 @@ spec:
     - user:default/biz-leader-1 # Example user for a business leader
 
 ---
-# --- ENTITY 13: Group (Order Processing Team) ---
+# --- ENTITY 11: Group (Development Department) ---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: development-department
+  description: The overarching department for all development teams.
+  tags:
+    - department
+    - engineering
+spec:
+  type: department
+  profile:
+    displayName: Development Department
+    email: dev-dept@example.com
+  parent: default/business-leadership # Parent is the Business Leadership Group
+  children: # Child groups will be order-processing-team and middleware-team
+    - group:default/order-processing-team
+    - group:default/middleware-team
+  members:
+    - user:default/dev-dept-head # Example user for the head of this department
+
+---
+# --- ENTITY 12: Group (Platform Engineering Team) ---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: platform-engineering-team # <--- MISSING GROUP DEFINITION ADDED HERE
+  description: Team responsible for core platform services and infrastructure, including messaging systems.
+  tags:
+    - team
+    - platform
+    - infrastructure
+spec:
+  type: team
+  profile:
+    displayName: Platform Engineering Team
+    email: platform-eng@example.com
+  parent: default/business-leadership # Parent is Business Leadership
+  children:
+    - group:default/middleware-team # Middleware Team is a child of Platform Engineering
+  members:
+    - user:default/platform-eng-lead # Example user for a platform engineering lead
+
+---
+# --- ENTITY 13: Group (Sales Operations Lead) ---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: sales-operations-lead
+  description: The leadership team responsible for the Sales Operations Domain.
+  tags:
+    - leadership
+    - sales
+    - operations
+spec:
+  type: team
+  profile:
+    displayName: Sales Operations Lead
+    email: sales-ops-lead@example.com
+  parent: default/business-leadership # Parent is the Business Leadership Group
+  children: [] # No child groups defined for this example
+  members:
+    - user:default/sales-lead-1 # Example user for a sales lead
+
+---
+# --- ENTITY 14: Group (Order Processing Team) ---
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: order-processing-team
   description: The team responsible for developing and maintaining the order processing applications.
-spec: # <--- THIS 'spec' IS REQUIRED
+spec:
   type: team
   profile:
     displayName: Order Processing Team
     email: order.processing@example.com
     picture: https://example.com/team-icons/order-processing.png
-  parent: default/development-department
-  children: []
-  members:
+  parent: default/development-department # If you have a hierarchy of groups
+  children: [] # List child groups/users if any
+  members: # List members by their User entity name
     - user:default/davewins
     - user:default/another-dev
 
 ---
-# --- ENTITY 14: Group (Middleware Team) ---
+# --- ENTITY 15: Group (Middleware Team) ---
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: middleware-team
   description: Team managing shared middleware services like TIBCO EMS.
-spec: 
+spec:
   type: team
   profile:
     displayName: Middleware Team
     email: middleware@example.com
-  parent: default/platform-engineering-team
+  parent: default/platform-engineering-team # Example parent group - changed to Platform Engineering
   children: []
   members:
     - user:default/middleware-engineer1
+
+---
+# --- ENTITY 16: User (davewins) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: davewins
+  tags:
+    - developer
+spec:
+  profile:
+    displayName: Dave Wins
+    email: dave.wins@example.com
+    picture: https://example.com/avatars/davewins.jpg
+  memberOf:
+    - group:default/order-processing-team
+
+---
+# --- ENTITY 17: User (another-developer) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: another-developer
+  tags:
+    - developer
+spec:
+  profile:
+    displayName: Another Developer
+    email: another.developer@example.com
+  memberOf:
+    - group:default/order-processing-team
+
+---
+# --- ENTITY 18: User (middleware-engineer1) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: middleware-engineer1
+  tags:
+    - engineer
+    - middleware
+spec:
+  profile:
+    displayName: Middleware Engineer 1
+    email: mw.engineer1@example.com
+  memberOf:
+    - group:default/middleware-team
+
+---
+# --- ENTITY 19: User (dev-dept-head) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: dev-dept-head
+  tags:
+    - leadership
+    - engineering
+spec:
+  profile:
+    displayName: Development Department Head
+    email: dev.head@example.com
+  memberOf:
+    - group:default/development-department
+
+---
+# --- ENTITY 20: User (sales-lead-1) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: sales-lead-1
+  tags:
+    - leadership
+    - sales
+spec:
+  profile:
+    displayName: Sales Lead 1
+    email: sales.lead1@example.com
+  memberOf:
+    - group:default/sales-operations-lead
+
+---
+# --- ENTITY 21: User (biz-leader-1) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: biz-leader-1
+  tags:
+    - leadership
+    - executive
+spec:
+  profile:
+    displayName: Business Leader 1
+    email: biz.leader1@example.com
+  memberOf:
+    - group:default/business-leadership
+
+---
+# --- ENTITY 22: User (platform-eng-lead) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: platform-eng-lead
+  tags:
+    - leadership
+    - platform
+spec:
+  profile:
+    displayName: Platform Engineering Lead
+    email: platform.lead@example.com
+  memberOf:
+    - group:default/platform-engineering-team
