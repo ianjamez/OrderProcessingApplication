@@ -22,15 +22,13 @@ spec:
   type: service
   lifecycle: production
   owner: group:default/order-processing-team
-  system: order-management-system # Reference to the System defined below
-  domain: sales-operations # Reference to the Domain defined below
+  system: order-management-system
+  domain: sales-operations
   dependsOn:
-    - resource:default/tibco-ems-broker-1 # Reference to the EMS Resource defined below
-    - resource:default/order-database-primary # Reference to the Database Resource defined below
-  # consumesApis:
-  #   - api:default/payment-gateway-api
+    - resource:default/tibco-ems-broker-1
+    - resource:default/order-database-primary
   providesApis:
-    - order-processing-api # Reference to the API defined below
+    - order-processing-api
 
 ---
 # --- ENTITY 2: Resource (TIBCO EMS Broker) ---
@@ -39,19 +37,14 @@ kind: Resource
 metadata:
   name: tibco-ems-broker-1
   description: Primary TIBCO EMS Broker for order processing queues.
-  # Namespace is optional, defaults to 'default' if not specified
-  # namespace: default
-  annotations:
-    tibco.com/ems-url: "tcp://localhost:7222"
   tags:
     - tibco
     - ems
     - messaging
 spec:
-  type: messaging-broker # You can define custom resource types
+  type: messaging-broker
   owner: group:default/middleware-team
-  system: messaging-infrastructure # Example: EMS could belong to a separate messaging system
-  # Relates to the Domain if applicable
+  system: messaging-infrastructure
   domain: enterprise-integration
 
 ---
@@ -61,7 +54,6 @@ kind: Resource
 metadata:
   name: order-database-primary
   description: PostgreSQL database for storing order data.
-  # namespace: default
   annotations:
     db.com/connection-string: "jdbc:postgresql://orderdb:5432/orders"
     db.com/type: "postgresql"
@@ -72,7 +64,7 @@ metadata:
 spec:
   type: database
   owner: group:default/data-platform-team
-  system: order-management-system # This database is part of the Order Management System
+  system: order-management-system
   domain: sales-operations
 
 ---
@@ -82,13 +74,12 @@ kind: System
 metadata:
   name: order-management-system
   description: Orchestrates the end-to-end processing and fulfillment of customer orders.
-  # namespace: default
   tags:
     - order-management
     - core-business
 spec:
-  owner: group:default/sales-operations-lead # The team or person responsible for the whole system
-  domain: sales-operations # Reference to the Domain defined below
+  owner: group:default/sales-operations-lead # Updated owner
+  domain: sales-operations
 
 ---
 # --- ENTITY 5: Domain (Sales Operations) ---
@@ -97,60 +88,20 @@ kind: Domain
 metadata:
   name: sales-operations
   description: Represents the business domain encompassing all sales and order fulfillment activities.
-  # namespace: default
   tags:
     - business-domain
     - sales
     - operations
 spec:
-  owner: group:default/business-leadership # The higher-level owner for this domain
+  owner: group:default/business-leadership # Updated owner
 
 ---
-# You might also add Group entities if they are not already in your Backstage catalog.
-# --- ENTITY 6: Group (Order Processing Team) ---
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: order-processing-team
-  description: The team responsible for developing and maintaining the order processing applications.
-spec:
-  type: team
-  profile:
-     displayName: Order Processing Team
-     email: order.processing@example.com
-     picture: https://example.com/team-icons/order-processing.png
-  parent: default/development-department # If you have a hierarchy of groups
-  children: [] # List child groups/users if any
-  members: # List members by their User entity name
-     - user:default/davewins
-     - user:default/another-dev
-
----
-#
-# --- ENTITY 7: Group (Middleware Team) ---
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: middleware-team
-  description: Team managing shared middleware services like TIBCO EMS.
-spec:
-  type: team
-  profile:
-    displayName: Middleware Team
-    email: middleware@example.com
-  parent: default/platform-engineering # Example parent group
-  children: []
-  members:
-    - user:default/middleware-engineer1
-
----
-# --- ENTITY 8: API (Order Processing API) ---
+# --- ENTITY 6: API (Order Processing API) ---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: order-processing-api
   description: API for placing and managing customer orders.
-  # namespace: default
   tags:
     - order-processing
     - api
@@ -420,3 +371,163 @@ spec:
         }
       }
     }
+
+---
+# --- ENTITY 8: Group (Development Department) ---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: development-department
+  description: The overarching department for all development teams.
+  tags:
+    - department
+    - engineering
+spec:
+  type: department
+  profile:
+    displayName: Development Department
+    email: dev-dept@example.com
+  parent: default/business-leadership # Parent is the Business Leadership Group
+  children: # Child groups will be order-processing-team and middleware-team
+    - group:default/order-processing-team
+    - group:default/middleware-team
+  members:
+    - user:default/dev-dept-head # Example user for the head of this department
+
+---
+# --- ENTITY 9: Group (Sales Operations Lead) ---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: sales-operations-lead
+  description: The leadership team responsible for the Sales Operations Domain.
+  tags:
+    - leadership
+    - sales
+    - operations
+spec:
+  type: team
+  profile:
+    displayName: Sales Operations Lead
+    email: sales-ops-lead@example.com
+  parent: default/business-leadership # Parent is the Business Leadership Group
+  children: [] # No child groups defined for this example
+  members:
+    - user:default/sales-lead-1 # Example user for a sales lead
+
+---
+# --- ENTITY 10: Group (Business Leadership) ---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: business-leadership
+  description: Top-level leadership group overseeing various business domains.
+  tags:
+    - leadership
+    - executive
+spec:
+  type: department
+  profile:
+    displayName: Business Leadership
+    email: leadership@example.com
+  parent: default/root # You might have a "root" or "organization" group
+  children: # Child groups would be departments or domain leads
+    - group:default/sales-operations-lead
+    - group:default/development-department
+  members:
+    - user:default/biz-leader-1 # Example user for a business leader
+
+---
+# --- ENTITY 11: User (davewins) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: davewins
+  tags:
+    - developer
+spec:
+  profile:
+    displayName: Dave Wins
+    email: dave.wins@example.com
+    picture: https://example.com/avatars/davewins.jpg
+  memberOf:
+    - group:default/order-processing-team
+
+---
+# --- ENTITY 12: User (another-developer) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: another-developer
+  tags:
+    - developer
+spec:
+  profile:
+    displayName: Another Developer
+    email: another.developer@example.com
+  memberOf:
+    - group:default/order-processing-team
+
+---
+# --- ENTITY 13: User (middleware-engineer1) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: middleware-engineer1
+  tags:
+    - engineer
+    - middleware
+spec:
+  profile:
+    displayName: Middleware Engineer 1
+    email: mw.engineer1@example.com
+  memberOf:
+    - group:default/middleware-team
+
+---
+# --- ENTITY 14: User (dev-dept-head) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: dev-dept-head
+  tags:
+    - leadership
+    - engineering
+spec:
+  profile:
+    displayName: Development Department Head
+    email: dev.head@example.com
+  memberOf:
+    - group:default/development-department
+
+---
+# --- ENTITY 15: User (sales-lead-1) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: sales-lead-1
+  tags:
+    - leadership
+    - sales
+spec:
+  profile:
+    displayName: Sales Lead 1
+    email: sales.lead1@example.com
+  memberOf:
+    - group:default/sales-operations-lead
+
+---
+# --- ENTITY 16: User (biz-leader-1) ---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: biz-leader-1
+  tags:
+    - leadership
+    - executive
+spec:
+  profile:
+    displayName: Business Leader 1
+    email: biz.leader1@example.com
+  memberOf:
+    - group:default/business-leadership
