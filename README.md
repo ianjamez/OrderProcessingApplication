@@ -15,8 +15,9 @@ This repository contains a simulated **Order Processing Application** built usin
 * [Setup and Deployment](#setup-and-deployment)
 * [Configuration](#configuration)
 * [Logging and Monitoring](#logging-and-monitoring)
+* [Developer Hub Integration](#developer-hub)
 * [Contributing](#contributing)
-* [License](#license)
+
 
 ---
 
@@ -239,6 +240,32 @@ There are a number of application variables that need to be configured after dep
 * **Logging Level:**
     * `LogLevel`: Can be set to `INFO` for standard logging.
 
+
+---
+
+## Developer-hub
+
+In order to import the catalog-info.yaml file into your Developer Hub instance, you do need to make sure that the appropriate rules are implemented in your Developer Hub Configuration to allow the full import to take place.
+
+* In your dataplane, go to your Developer Hub Capability, and click on "Update Configuration"
+* In the configuration file, add the following:
+```yaml
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+  rules:
+    - allow:
+        - Component
+        - API
+        - Location
+        - System
+        - Resource
+        - Group
+        - User
+        - Domain
+```
+
+Once the configuration has been updated, you will then be able to use the "Import" flow to import the catalog-info.yaml file from this repository.
 
 ---
 
