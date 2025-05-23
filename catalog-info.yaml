@@ -495,15 +495,15 @@ kind: Group
 metadata:
   name: order-processing-team
   description: The team responsible for developing and maintaining the order processing applications.
-spec:
+spec: # <--- THIS 'spec' IS REQUIRED
   type: team
   profile:
     displayName: Order Processing Team
     email: order.processing@example.com
     picture: https://example.com/team-icons/order-processing.png
-  parent: default/development-department # If you have a hierarchy of groups
-  children: [] # List child groups/users if any
-  members: # List members by their User entity name
+  parent: default/development-department
+  children: []
+  members:
     - user:default/davewins
     - user:default/another-dev
 
@@ -513,3 +513,13 @@ apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: middleware-team
+  description: Team managing shared middleware services like TIBCO EMS.
+spec: 
+  type: team
+  profile:
+    displayName: Middleware Team
+    email: middleware@example.com
+  parent: default/platform-engineering-team
+  children: []
+  members:
+    - user:default/middleware-engineer1
