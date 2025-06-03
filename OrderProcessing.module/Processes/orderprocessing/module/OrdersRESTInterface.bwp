@@ -712,7 +712,7 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.3"/>
 
                                     <layoutConstraint
-                                    x="226"
+                                    x="220"
                                     xsi:type="notation:Bounds" y="10"/>
                                     </children>
 
@@ -793,7 +793,7 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity"/>
 
                                     <layoutConstraint
-                                    height="119"
+                                    height="112"
                                     width="623" xsi:type="notation:Bounds"/>
                                     </children>
 
